@@ -22,6 +22,13 @@ class User extends Authenticatable
 
     use SoftDeletes;
 
+    // this field must type date yyyy-mm-dd HH:mm:ss
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
