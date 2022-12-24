@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     // appointment page
     Route::resource('appointment', AppointmentController::class);
     // payment page
-    Route::resource('payments', PaymentController::class);
+    Route::resource('payment', PaymentController::class);
 });
 
 
