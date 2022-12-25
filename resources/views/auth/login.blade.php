@@ -22,7 +22,7 @@
 
                         <x-jet-validation-errors class="mb-4" />
                         @if (session('status'))
-                            <div class="mb-4 font-medium text-sm text-green-600">
+                            <div class="block mb-4 font-medium text-sm text-green-600">
                                 {{ session('status') }}
                             </div>
                         @endif
@@ -30,22 +30,36 @@
                         <!-- Form input -->
                         <form action="{{ route('login') }}" class="grid gap-6" method="POST">
                             @csrf
+
                             <label class="block">
-                                <input type="email" name="email"
+                                <input type="email" name="email" id="email"
                                     class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                                    placeholder="Email Address" :value="old('email')" required autofocus />
+                                    placeholder="Email Address" value="{{ old('email') }}" required autofocus
+                                    autocomplete="email" />
+                                @if ($errors->has('email'))
+                                    <p class="text-red-800 mb-5 text-sm">
+                                        {{ $errors->first('email') }}
+                                    </p>
+                                @endif
                             </label>
 
                             <label class="block">
-                                <input type="password" name="password"
+                                <input type="password" name="password" id="password"
                                     class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
-                                    placeholder="Password" required autocomplete="current-password" />
+                                    placeholder="Password" required autocomplete="current-password"
+                                    autocomplete="current-password" />
+                                @if ($errors->has('password'))
+                                    <p class="text-red-800 mb-5 text-sm">
+                                        {{ $errors->first('password') }}
+                                    </p>
+                                @endif
                             </label>
+
 
                             <label for="remember_me" class="block text-center">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="remember_me"
-                                        name="remember">
+                                    <input class="form-check-input" type="checkbox" id="remember_me" name="remember"
+                                        {{ old('remember') ? 'checked' : '' }}>
                                     <label class="form-check-label" for="remember_me">
                                         Remember Me
                                     </label>
