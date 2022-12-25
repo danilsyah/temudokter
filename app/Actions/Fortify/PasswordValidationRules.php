@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use Laravel\Fortify\Rules\Password;
+use Illuminate\Validation\Rules\Password as Pass;
 
 trait PasswordValidationRules
 {
@@ -13,6 +14,7 @@ trait PasswordValidationRules
      */
     protected function passwordRules()
     {
-        return ['required', 'string', new Password, 'confirmed'];
+        // password minimal 8 characters mengandung angka, huruf besar dan kecil
+        return ['required', 'string', new Password, 'confirmed', Pass::min(8)->numbers()->mixedCase()];
     }
 }

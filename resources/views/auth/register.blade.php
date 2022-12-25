@@ -68,33 +68,6 @@
                                 @endif
                             </label>
 
-                            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                                <div class="mt-4">
-                                    <x-jet-label for="terms">
-                                        <div class="flex items-center">
-                                            <x-jet-checkbox name="terms" id="terms" />
-
-                                            <div class="ml-2">
-                                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                    'terms_of_service' =>
-                                                        '<a target="_blank" href="' .
-                                                        route('terms.show') .
-                                                        '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
-                                                        __('Terms of Service') .
-                                                        '</a>',
-                                                    'privacy_policy' =>
-                                                        '<a target="_blank" href="' .
-                                                        route('policy.show') .
-                                                        '" class="underline text-sm text-gray-600 hover:text-gray-900">' .
-                                                        __('Privacy Policy') .
-                                                        '</a>',
-                                                ]) !!}
-                                            </div>
-                                        </div>
-                                    </x-jet-label>
-                                </div>
-                            @endif
-
                             <div class="mt-10 grid gap-6">
                                 <button type="submit"
                                     class="text-center text-white text-lg font-medium bg-[#0D63F3] px-10 py-4 rounded-full">
