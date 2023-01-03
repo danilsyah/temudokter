@@ -20,9 +20,9 @@
                     </h2>
                     <div class="mt-12">
 
-                        <x-jet-validation-errors class="mb-4" />
+                        <x-jet-validation-errors class="text-red-800 mb-5 text-sm" />
                         @if (session('status'))
-                            <div class="block mb-4 font-medium text-sm text-green-600">
+                            <div class="bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
@@ -36,11 +36,11 @@
                                     class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
                                     placeholder="Email Address" value="{{ old('email') }}" required autofocus
                                     autocomplete="email" />
-                                @if ($errors->has('email'))
+                                {{-- @if ($errors->has('email'))
                                     <p class="text-red-800 mb-5 text-sm">
                                         {{ $errors->first('email') }}
                                     </p>
-                                @endif
+                                @endif --}}
                             </label>
 
                             <label class="block">
@@ -48,11 +48,11 @@
                                     class="block w-full rounded-full py-4 text-[#1E2B4F] font-medium placeholder:text-[#AFAEC3] placeholder:font-normal px-7 border border-[#d4d4d4] focus:outline-none focus:border-[#0D63F3]"
                                     placeholder="Password" required autocomplete="current-password"
                                     autocomplete="current-password" />
-                                @if ($errors->has('password'))
+                                {{-- @if ($errors->has('password'))
                                     <p class="text-red-800 mb-5 text-sm">
                                         {{ $errors->first('password') }}
                                     </p>
-                                @endif
+                                @endif --}}
                             </label>
 
 

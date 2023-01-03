@@ -24,14 +24,20 @@ use App\Http\Controllers\Backsite\DashboardController;;
 
 Route::resource('/', LandingController::class);
 
+// frontsite
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function(){
     // appointment page
     Route::resource('appointment', AppointmentController::class);
     // payment page
     Route::resource('payment', PaymentController::class);
+    // success register
+    Route::get('success-signup', function(){
+        return view('pages.frontsite.success.signup-success');
+    });
 });
 
 
+// backsite
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function(){
     // Dashboard
     Route::resource('dashboard', DashboardController::class);
