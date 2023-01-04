@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             SpecialistSeeder::class,
             ConfigPaymentSeeder::class,
             ConsultationSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
