@@ -15,7 +15,6 @@ use Auth;
 // use model here
 use App\Models\Operational\Appointment;
 use App\Models\Operational\Doctor;
-use App\Models\Operational\Transaction;
 use App\Models\User;
 use App\Models\MasterData\Consultation;
 
@@ -33,7 +32,16 @@ class ReportAppointmentController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.operational.appointment.index');
+        // for table grid
+        $appointment = Appointment::orderBy('created_at', 'desc')->get();
+
+        // select2 data doctor
+        $doctor = Doctor::orderBy('name', 'asc')->get();
+
+        // select2 data consultation
+        $consultation = Consultation::orderBy('name', 'asc')->get();
+
+        return view('pages.backsite.operational.appointment.index', compact('appointment', 'doctor', 'consultation'));
     }
 
     /**

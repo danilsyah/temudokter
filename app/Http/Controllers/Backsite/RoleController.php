@@ -19,9 +19,6 @@ use Auth;
 
 //models
 use App\Models\ManagementAccess\Role;
-use App\Models\ManagementAccess\RoleUser;
-use App\Models\ManagementAccess\Permission;
-use App\Models\ManagementAccess\PermissionRole;
 
 // thirdparty package
 
@@ -39,7 +36,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.management-access.role.index');
+        $role = Role::orderBy('title', 'asc')->get();
+
+        return view('pages.backsite.management-access.role.index', compact('role'));
     }
 
     /**
@@ -58,9 +57,17 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        return abort(404);
+        // get all request from frontsite
+        $data = $request->all();
+
+        // store to database
+        $role = Role::create($data);
+
+        // sweetalert show
+        alert()->success('Success Message', 'Successfully added new role');
+        return redirect()->route('backsite.role.index');
     }
 
     /**
@@ -69,9 +76,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        return abort(404);
+        // menggunakan fitur model binding, Models dijadikan sebuah parameter pada function
+        return view('pages.backsite.management-access.role.show', compact('role'));
     }
 
     /**
@@ -80,9 +88,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        return abort(404);
+        return view('pages.backsite.management-access.role.edit', compact('role'));
     }
 
     /**
@@ -92,9 +100,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        return abort(404);
+        // get all request from frontsite
+        $data = $request->all();
+
+        // update to database
+        $role->update($data);
+
+        // sweetalert show
+        alert()->success('Success Message', 'Successfully updated role');
+        return redirect()->route('backsite.role.index');
     }
 
     /**
@@ -103,8 +119,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        return abort(404);
+        $role->forceDelete();
+
+        alert()->success('Success Message', 'Successfully deleted role');
+        return back();
     }
 }

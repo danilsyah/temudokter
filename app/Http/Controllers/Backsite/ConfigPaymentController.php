@@ -11,13 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 //use request
 use App\Http\Requests\ConfigPayment\UpdateConfigPaymentRequest;
 
-
 // use everything here
 use Gate;
 use Auth;
 
 //models
 use App\Models\MasterData\ConfigPayment;
+
+// thirdparty packages
 
 class ConfigPaymentController extends Controller
 {
@@ -33,7 +34,9 @@ class ConfigPaymentController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.master-data.config-payment.index');
+        $config_payment = ConfigPayment::orderBy('created_at', 'desc')->get();
+
+        return view('pages.backsite.master-data.config-payment.index', compact('config_payment'));
     }
 
     /**
@@ -74,9 +77,10 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ConfigPayment $configPayment)
     {
-        return abort(404);
+        // model binding
+        return view('pages.backsite.master-data.config-payment.edit', compact('configPayment'));
     }
 
     /**
@@ -86,9 +90,15 @@ class ConfigPaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateConfigPaymentRequest $request, ConfigPayment $configPayment)
     {
-        return abort(404);
+        $data = $request->all();
+
+        // update to database
+        $configPayment->update($data);
+
+        alert()->success('Success Message', 'Successfully updated config payment.');
+        return redirect()->route('backsite.config_payment.index');
     }
 
     /**
