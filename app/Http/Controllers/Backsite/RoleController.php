@@ -19,6 +19,9 @@ use Auth;
 
 //models
 use App\Models\ManagementAccess\Role;
+use App\Models\ManagementAccess\RoleUser;
+use App\Models\ManagementAccess\Permission;
+use App\Models\ManagementAccess\PermissionRole;
 
 // thirdparty package
 
@@ -36,7 +39,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role = Role::orderBy('title', 'asc')->get();
+        $role = Role::orderBy('created_at', 'desc')->get();
 
         return view('pages.backsite.management-access.role.index', compact('role'));
     }
@@ -78,6 +81,8 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        $role->load('permission');
+
         // menggunakan fitur model binding, Models dijadikan sebuah parameter pada function
         return view('pages.backsite.management-access.role.show', compact('role'));
     }
@@ -90,7 +95,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('pages.backsite.management-access.role.edit', compact('role'));
+        $permission = Permission::all();
+        $role->load('permission');
+
+        return view('pages.backsite.management-access.role.edit', compact('permission','role'));
     }
 
     /**
@@ -107,6 +115,7 @@ class RoleController extends Controller
 
         // update to database
         $role->update($data);
+        $role->permission()->sync($request->input('permission', []));
 
         // sweetalert show
         alert()->success('Success Message', 'Successfully updated role');

@@ -34,7 +34,7 @@ class ConfigPaymentController extends Controller
      */
     public function index()
     {
-        $config_payment = ConfigPayment::orderBy('created_at', 'desc')->get();
+        $config_payment = ConfigPayment::all();
 
         return view('pages.backsite.master-data.config-payment.index', compact('config_payment'));
     }

@@ -14,6 +14,10 @@ use Auth;
 
 //use models
 use App\Models\ManagementAccess\Permission;
+use App\Models\ManagementAccess\PermissionRole;
+use App\Models\ManagementAccess\Role;
+use App\Models\ManagementAccess\RoleUser;
+
 
 // thirdparty package
 
