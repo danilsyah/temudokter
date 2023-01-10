@@ -75,6 +75,8 @@ class ReportAppointmentController extends Controller
      */
     public function show($id)
     {
+        abort_if(Gate::denies('appointment_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return abort(404);
     }
 

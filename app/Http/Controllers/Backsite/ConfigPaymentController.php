@@ -79,6 +79,8 @@ class ConfigPaymentController extends Controller
      */
     public function edit(ConfigPayment $configPayment)
     {
+        abort_if(Gate::denies('config_payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         // model binding
         return view('pages.backsite.master-data.config-payment.edit', compact('configPayment'));
     }

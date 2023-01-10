@@ -72,6 +72,8 @@ class ReportTransactionController extends Controller
      */
     public function show($id)
     {
+        abort_if(Gate::denies('transaction_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return abort(404);
     }
 

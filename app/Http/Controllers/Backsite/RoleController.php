@@ -81,6 +81,8 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $role->load('permission');
 
         // menggunakan fitur model binding, Models dijadikan sebuah parameter pada function
@@ -95,6 +97,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $permission = Permission::all();
         $role->load('permission');
 
@@ -130,6 +134,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        abort_if(Gate::denies('role_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $role->forceDelete();
 
         alert()->success('Success Message', 'Successfully deleted role');

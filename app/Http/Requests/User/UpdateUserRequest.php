@@ -6,7 +6,7 @@ use App\Models\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
-
+use Gate;
 // this rule only at update request
 use Illuminate\Validation\Rule;
 
@@ -20,6 +20,7 @@ class UpdateUserRequest extends FormRequest
     public function authorize()
     {
         // create middleware from kernel at here
+        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return true;
     }
 

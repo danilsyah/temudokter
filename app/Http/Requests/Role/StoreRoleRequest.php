@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Role;
 
 use App\Models\ManagementAccess\Role;
-
+use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,6 +17,7 @@ class StoreRoleRequest extends FormRequest
     public function authorize()
     {
         // create middleware from kernel at here
+        abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         return true;
     }
 
