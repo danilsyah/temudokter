@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 //use library
 use Illuminate\Support\Facades\storage;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 //request
 use App\Http\Requests\Doctor\StoreDoctorRequest;
@@ -37,6 +39,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
+        // permission access
+        abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         // for table grid
         $doctor = Doctor::orderBy('created_at', 'desc')->get();
 
@@ -67,12 +72,30 @@ class DoctorController extends Controller
         // get all request from frontsite
         $data = $request->all();
 
-        // store in database
-        $doctor = Doctor::create($data);
+        // re format before push to table
+        $data['fee'] = str_replace(',', '', $data['fee']);
+        $data['fee'] = str_replace('IDR ', '', $data['fee']);
 
-        // return response
-        alert()->success('Success Message', 'Successfully added new doctor');
-        return redirect()->route('backsite.doctor.index');
+        // upload process here
+        $path = public_path('app/public/assets/file-doctor');
+        if(!File::isDirectory($path)){
+            $response = Storage::makeDirectory('public/assets/file-doctor');
+        }
+
+        // change file locations
+        if(isset($data['photo'])){
+            $data['photo'] = $request->file('photo')->store(
+                'assets/file-doctor', 'public'
+            );
+        }else{
+            $data['photo'] = "";
+        }
+
+         //store to database
+         $doctor = Doctor::create($data);
+
+         alert()->success('Success Message', 'Successfully added new doctor');
+         return redirect()->route('backsite.doctor.index');
     }
 
     /**
@@ -113,7 +136,40 @@ class DoctorController extends Controller
      */
     public function update(UpdateDoctorRequest $request, Doctor $doctor)
     {
-        return abort(404);
+        // get all request from frontsite
+       $data = $request->all();
+
+       // re format before push to table
+       $data['fee'] = str_replace(',', '', $data['fee']);
+       $data['fee'] = str_replace('IDR ', '', $data['fee']);
+
+       // upload process here
+       // change format photo
+       if(isset($data['photo'])){
+
+            // first checking old photo to delete from storage
+           $get_item = $doctor['photo'];
+
+           // change file locations
+           $data['photo'] = $request->file('photo')->store(
+               'assets/file-doctor', 'public'
+           );
+
+           // delete old photo from storage
+           $data_old = 'storage/'.$get_item;
+           if (File::exists($data_old)) {
+               File::delete($data_old);
+           }else{
+               File::delete('storage/app/public/'.$get_item);
+           }
+
+       }
+
+       // update to database
+       $doctor->update($data);
+
+       alert()->success('Success Message', 'Successfully Updated data doctor');
+       return redirect()->route('backsite.doctor.index');
     }
 
     /**
@@ -126,9 +182,21 @@ class DoctorController extends Controller
     {
         abort_if(Gate::denies('doctor_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $doctor->forceDelete();
+        // first checking old file to delete from storage
+        $get_item = $doctor['photo'];
 
-        alert()->success('Success Message', 'Successfully deleted doctor');
-        return back();
+        $data = 'storage/'.$get_item;
+        if (File::exists($data)) {
+            File::delete($data);
+        }else{
+            File::delete('storage/app/public/'.$get_item);
+        }
+
+        // forceDelete() = menghapus data dari database
+        // delete() = jika mengaktifkan softdeletes maka data didatabase tidak akan dihapus secara permanen
+       $doctor->forceDelete();
+
+       alert()->success('Success Message', 'Successfully deleted data');
+       return back();
     }
 }
