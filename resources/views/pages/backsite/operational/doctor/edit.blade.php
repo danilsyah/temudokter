@@ -98,6 +98,23 @@
                                                 </div>
 
                                                 <div class="form-group row">
+                                                    <label class="col-md-3 label-control" for="kta_number">KTA Number <code
+                                                            style="color:red;">required</code></label>
+                                                    <div class="col-md-9 mx-auto">
+                                                        <input type="number" id="kta_number" name="kta_number"
+                                                            class="form-control" placeholder="kta number doctor"
+                                                            value="{{ old('kta_number', isset($specialist) ? $doctor->kta_number : '') }}"
+                                                            autocomplete="off" required>
+
+                                                        @if ($errors->has('kta_number'))
+                                                            <p style="font-style: bold; color: red;">
+                                                                {{ $errors->first('kta_number') }}
+                                                            </p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
                                                     <label class="col-md-3 label-control" for="name">Name <code
                                                             style="color:red;">required</code></label>
                                                     <div class="col-md-9 mx-auto">
@@ -137,7 +154,8 @@
                                                             style="color:green;">optional</code></label>
                                                     <div class="col-md-9 mx-auto">
                                                         <div class="custom-file">
-                                                            <input type="file" accept="image/png, image/svg, image/jpeg"
+                                                            <input type="file"
+                                                                accept="image/png, image/svg, image/jpeg"
                                                                 class="custom-file-input" id="photo" name="photo">
                                                             <label class="custom-file-label" for="photo"
                                                                 aria-describedby="photo">Choose File</label>
