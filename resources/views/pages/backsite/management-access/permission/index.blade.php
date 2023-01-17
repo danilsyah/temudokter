@@ -47,7 +47,8 @@
                                         <div class="card-body card-dashboard">
 
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered text-inputs-searching default-table">
+                                                <table
+                                                    class="table table-striped table-bordered text-inputs-searching default-table">
                                                     <thead>
                                                         <tr>
                                                             <th>Permission</th>
@@ -80,7 +81,7 @@
             @endcan
         </div>
     </div>
-<!-- END: Content-->
+    <!-- END: Content-->
 @endsection
 
 @push('after-script')
@@ -88,7 +89,10 @@
         $('.default-table').DataTable({
             "order": [],
             "paging": true,
-            "lengthMenu": [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"] ],
+            "lengthMenu": [
+                [5, 10, 25, 50, 100, -1],
+                [5, 10, 25, 50, 100, "All"]
+            ],
             "pageLength": 10
         });
     </script>

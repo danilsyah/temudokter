@@ -11,6 +11,12 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ route('index') }}" target="_blank">
+                    <i class="bx bx-credit-card-front }}"></i><span data-i18n="Frontsite">Frontsite</span>
+                </a>
+            </li>
+
             <li class=" navigation-header"><span data-i18n="Application">Application</span><i class="la la-ellipsis-h"
                     data-toggle="tooltip" data-placement="right" data-original-title="Application"></i>
             </li>

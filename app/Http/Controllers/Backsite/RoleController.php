@@ -39,6 +39,8 @@ class RoleController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $role = Role::orderBy('created_at', 'desc')->get();
 
         return view('pages.backsite.management-access.role.index', compact('role'));
@@ -83,7 +85,10 @@ class RoleController extends Controller
     {
         abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $role->load('permission');
+        // get data permission by role
+        $role->load(['permission' => function ($query){
+            $query->orderBy('title', 'asc');
+        }]);
 
         // menggunakan fitur model binding, Models dijadikan sebuah parameter pada function
         return view('pages.backsite.management-access.role.show', compact('role'));
