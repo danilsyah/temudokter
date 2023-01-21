@@ -105,8 +105,7 @@
                                                 </div>
 
                                                 <div class="form-actions text-right">
-                                                    <button type="submit" style="width: 120px;"
-                                                        class="btn btn-cyan create_confirm">
+                                                    <button type="submit" style="width: 120px;" class="btn btn-cyan">
                                                         <i class="la la-check-square-o"></i> Submit
                                                     </button>
                                                 </div>
@@ -294,27 +293,6 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            })
-        });
-    </script>
-
-    <script type="text/javascript">
-        $('.create_confirm').click(function(event) {
-            var form = $(this).closest("form");
-            var name = $(this).data("name");
-            event.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Simpan Data",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Save it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();
