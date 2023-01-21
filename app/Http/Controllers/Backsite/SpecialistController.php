@@ -35,7 +35,9 @@ class SpecialistController extends Controller
      */
     public function index()
     {
-        $specialist = Specialist::orderBy('created_at', 'DESC')->get();
+        abort_if(Gate::denies('specialist_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $specialist = Specialist::orderBy('updated_at', 'DESC')->get();
 
         return view('pages.backsite.master-data.specialist.index', compact('specialist'));
     }
@@ -60,6 +62,10 @@ class SpecialistController extends Controller
     {
         // get all request from frontsite
         $data = $request->all();
+
+        // re format before push to database
+        $data['price'] = str_replace(',', '', $data['price']);
+        $data['price'] = str_replace('IDR', '', $data['price']);
 
         // store to database
         $specialist = Specialist::create($data);
@@ -106,6 +112,9 @@ class SpecialistController extends Controller
     {
         // get all request from frontsite
         $data = $request->all();
+
+        $data['price'] = str_replace(',', '', $data['price']);
+        $data['price'] = str_replace('IDR', '', $data['price']);
 
         // update to database
         $specialist->update($data);

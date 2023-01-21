@@ -29,4 +29,5 @@
 <!-- END: Page JS-->
 
 {{-- third party --}}
+<script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 <script src="{{ url('https://unpkg.com/boxicons@latest/dist/boxicons.js') }}"></script>

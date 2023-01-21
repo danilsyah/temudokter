@@ -22,9 +22,9 @@
                         <div class="text-[#AFAEC3]">Cardiologist</div>
 
                         <!--
-                                              Icon when mobile is show.
-                                              star icon mobile: "flex/show", star icon dekstop: "hidden"
-                                            -->
+                                                              Icon when mobile is show.
+                                                              star icon mobile: "flex/show", star icon dekstop: "hidden"
+                                                            -->
                         <div class="lg:hidden flex items-center gap-x-2">
                             <div class="flex items-center gap-2">
                                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
@@ -67,9 +67,9 @@
                     </div>
 
                     <!--
-                                              Icon when desktop is show.
-                                              star icon mobile: "hidden", star icon dekstop: "flex/show"
-                                          -->
+                                                              Icon when desktop is show.
+                                                              star icon mobile: "hidden", star icon dekstop: "flex/show"
+                                                          -->
                     <div class="hidden lg:flex items-center gap-x-2">
                         <div class="flex items-center gap-2">
                             <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
@@ -229,16 +229,16 @@
 
                     <div class="mt-10 grid">
                         <!--
-                                              button when payment is filled.
-                                            -->
+                                                              button when payment is filled.
+                                                            -->
                         <a href="{{ route('payment.store') }}"
                             class="bg-[#0D63F3] text-white px-10 py-3 rounded-full text-center" x-show="payment.length">
                             Pay Now
                         </a>
 
                         <!--
-                                              button when payment is empty.
-                                            -->
+                                                              button when payment is empty.
+                                                            -->
                         <span x-show="!payment.length"
                             class="bg-[#C0CADA] text-[#808997] cursor-not-allowed px-10 py-3 rounded-full text-center">
                             Pay Now
