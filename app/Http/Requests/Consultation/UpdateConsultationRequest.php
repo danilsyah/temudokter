@@ -6,6 +6,7 @@ use App\Models\MasterData\Consultation;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Gate;
 // this rule only at update request
 use Illuminate\Validation\Rule;
 

@@ -5,6 +5,7 @@ namespace App\Http\Requests\Consultation;
 use App\Models\MasterData\Consultation;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 class StoreConsultationRequest extends FormRequest

@@ -35,6 +35,8 @@ class ConsultationController extends Controller
      */
     public function index()
     {
+        abort_if(Gate::denies('consultation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $consultation = Consultation::orderBy('created_at', 'desc')->get();
 
         return view('pages.backsite.master-data.consultation.index', compact('consultation'));
