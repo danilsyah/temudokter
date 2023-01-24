@@ -6,8 +6,8 @@
 
                 <!-- Logo Brand -->
                 <a href="{{ route('index') }}" class="flex-shrink-0 flex items-center">
-                    <img class="h-12 lg:h-16 w-auto" src="{{ asset('/assets/frontsite/images/logo.png') }}"
-                        alt="Meet Doctor Logo" />
+                    <img class="h-14 lg:h-16 w-auto bg-transparent"
+                        src="{{ asset('/assets/frontsite/images/logo2.png') }}" alt="Temu Doctor Logo" />
                 </a>
 
                 <!-- Navigation Menu -->
@@ -49,9 +49,9 @@
                         <span class="sr-only">Open main menu</span>
 
                         <!--
-                                                                          Icon when menu is closed.
-                                                                          Menu open: "hidden", Menu closed: "block"
-                                                                        -->
+                                                                                                                                                                              Icon when menu is closed.
+                                                                                                                                                                              Menu open: "hidden", Menu closed: "block"
+                                                                                                                                                                            -->
                         <svg x-show="!navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,9 +59,9 @@
                         </svg>
 
                         <!--
-                                                                          Icon when menu is open.
-                                                                          Menu open: "block", Menu closed: "hidden"
-                                                                        -->
+                                                                                                                                                                              Icon when menu is open.
+                                                                                                                                                                              Menu open: "block", Menu closed: "hidden"
+                                                                                                                                                                            -->
                         <svg x-show="navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,9 +126,9 @@
                         <span class="sr-only">Open main menu</span>
 
                         <!--
-                                                                                      Icon when menu is closed.
-                                                                                      Menu open: "hidden", Menu closed: "block"
-                                                                                    -->
+                                                                                                                                                                                          Icon when menu is closed.
+                                                                                                                                                                                          Menu open: "hidden", Menu closed: "block"
+                                                                                                                                                                                        -->
                         <svg x-show="!navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -136,9 +136,9 @@
                         </svg>
 
                         <!--
-                                                                                      Icon when menu is open.
-                                                                                      Menu open: "block", Menu closed: "hidden"
-                                                                                    -->
+                                                                                                                                                                                          Icon when menu is open.
+                                                                                                                                                                                          Menu open: "block", Menu closed: "hidden"
+                                                                                                                                                                                        -->
                         <svg x-show="navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

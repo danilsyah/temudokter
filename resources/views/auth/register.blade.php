@@ -10,7 +10,7 @@
 
                 <!-- Logo Brand -->
                 <a href="{{ route('index') }}" class="flex-shrink-0 inline-flex items-center">
-                    <img class="h-12 lg:h-16" src="{{ asset('/assets/frontsite/images/logo.png') }}" alt="Meet Doctor Logo" />
+                    <img class="h-12 lg:h-16" src="{{ asset('/assets/frontsite/images/logo2.png') }}" alt="Meet Doctor Logo" />
                 </a>
 
                 <div class="flex flex-col justify-center py-14 h-full lg:min-h-screen">
@@ -94,7 +94,7 @@
                                 alt="" />
                         </div>
                         <p class="text-2xl leading-loose">
-                            MeetDoctor telah membantu saya terhubung dengan dokter yang
+                            TemuDokter telah membantu saya terhubung dengan dokter yang
                             professional dan memberikan dampak yang sangat besar kepada
                             kesehatan yang baik kepada saya
                         </p>
@@ -106,8 +106,8 @@
                                         alt="image testimonial" />
                                 </div>
                                 <div class="ml-5">
-                                    <p class="font-medium text-[#1E2B4F]">Shayna</p>
-                                    <p class="text-sm text-[#AFAEC3]">Product Designer</p>
+                                    <p class="font-medium text-[#1E2B4F]">Fika</p>
+                                    <p class="text-sm text-[#AFAEC3]">Instructure Aerobik</p>
                                 </div>
                             </div>
                         </div>

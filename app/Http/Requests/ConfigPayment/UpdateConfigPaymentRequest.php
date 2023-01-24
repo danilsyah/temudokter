@@ -5,6 +5,7 @@ namespace App\Http\Requests\ConfigPayment;
 use App\Models\MasterData\ConfigPayment;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 class UpdateConfigPaymentRequest extends FormRequest
