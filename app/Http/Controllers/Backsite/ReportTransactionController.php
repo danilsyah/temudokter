@@ -40,7 +40,19 @@ class ReportTransactionController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.operational.transaction.index');
+        abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $type_user_condition = Auth::user()->detail_user->type_user_id;
+
+        if($type_user_condition == 1){
+            // for admin
+            $transaction = Transaction::orderBy('created_at', 'desc')->get();
+        }else{
+            // other admin for doctor & patient ( task for everyone here )
+            $transaction = Transaction::orderBy('created_at', 'desc')->get();
+        }
+
+        return view('pages.backsite.operational.transaction.index', compact('transaction'));
     }
 
     /**

@@ -49,9 +49,9 @@
                         <span class="sr-only">Open main menu</span>
 
                         <!--
-                                                                                                                                                                              Icon when menu is closed.
-                                                                                                                                                                              Menu open: "hidden", Menu closed: "block"
-                                                                                                                                                                            -->
+                                                                                                                                                                                  Icon when menu is closed.
+                                                                                                                                                                                  Menu open: "hidden", Menu closed: "block"
+                                                                                                                                                                                -->
                         <svg x-show="!navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,9 +59,9 @@
                         </svg>
 
                         <!--
-                                                                                                                                                                              Icon when menu is open.
-                                                                                                                                                                              Menu open: "block", Menu closed: "hidden"
-                                                                                                                                                                            -->
+                                                                                                                                                                                  Icon when menu is open.
+                                                                                                                                                                                  Menu open: "block", Menu closed: "hidden"
+                                                                                                                                                                                -->
                         <svg x-show="navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -86,7 +86,8 @@
                                         Hi, {{ Auth::user()->name }}
                                     </div>
                                     {{-- this section must ready from type user --}}
-                                    <div class="text-sm text-[#AFAEC3]">Pasien</div>
+                                    <div class="text-sm text-[#AFAEC3]">{{ Auth::user()->detail_user->type_user->name }}
+                                    </div>
                                 </div>
                                 <img class="h-12 w-12 rounded-full ring-1 ring-offset-4 ring-[#0D63F3]"
                                     src="{{ asset('/assets/frontsite/images/authenticated-user.svg') }}"
@@ -126,9 +127,9 @@
                         <span class="sr-only">Open main menu</span>
 
                         <!--
-                                                                                                                                                                                          Icon when menu is closed.
-                                                                                                                                                                                          Menu open: "hidden", Menu closed: "block"
-                                                                                                                                                                                        -->
+                                                                                                                                                                                              Icon when menu is closed.
+                                                                                                                                                                                              Menu open: "hidden", Menu closed: "block"
+                                                                                                                                                                                            -->
                         <svg x-show="!navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -136,9 +137,9 @@
                         </svg>
 
                         <!--
-                                                                                                                                                                                          Icon when menu is open.
-                                                                                                                                                                                          Menu open: "block", Menu closed: "hidden"
-                                                                                                                                                                                        -->
+                                                                                                                                                                                              Icon when menu is open.
+                                                                                                                                                                                              Menu open: "block", Menu closed: "hidden"
+                                                                                                                                                                                            -->
                         <svg x-show="navbarMobileOpen" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

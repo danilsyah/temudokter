@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 // use everything here
 // use Gate;
 use Auth;
+use Exception;
 
 // use model here
 use App\Models\User;
@@ -23,6 +24,9 @@ use App\Models\MasterData\Specialist;
 use App\Models\MasterData\ConfigPayment;
 
 // thirparty package here
+// use Midtrans\Snap;
+// use Midtrans\Config;
+// use Midtrans\Notification;
 
 class PaymentController extends Controller
 {
@@ -60,7 +64,9 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        return abort(404);
+    //    proses payment
+
+
     }
 
     /**
@@ -106,5 +112,26 @@ class PaymentController extends Controller
     public function destroy($id)
     {
         return abort(404);
+    }
+
+    // custom
+
+    public function payment($id)
+    {
+        $appointment = Appointment::where('id', $id)->first();
+        $config_payment = ConfigPayment::first();
+
+        // set value
+        $specialist_fee = $appointment->doctor->specialist->price;
+        $doctor_fee = $appointment->doctor->fee;
+        $hospital_fee = $config_payment->fee;
+        $hospital_vat = $config_payment->vat;
+
+        $total = $specialist_fee + $doctor_fee + $hospital_fee;
+
+        $total_with_vat = ($total * $hospital_vat) / 100;
+        $grand_total = $total + $total_with_vat;
+
+        return view('pages.frontsite.payment.index', compact('appointment', 'config_payment', 'total_with_vat', 'grand_total', 'id'));
     }
 }

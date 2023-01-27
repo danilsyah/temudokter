@@ -33,17 +33,18 @@ class ReportAppointmentController extends Controller
     public function index()
     {
         //  you must add validation with condition session id user by type user doctor & patient
+        abort_if(Gate::denies('appointment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        // for table grid
-        $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        $type_user_condition = Auth::user()->detail_user->type_user_id;
 
-        // select2 data doctor
-        $doctor = Doctor::orderBy('name', 'asc')->get();
+        if($type_user_condition == 1){
+            // for admin
+            $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        }else{
+            $appointment = Appointment::orderBy('created_at', 'desc')->get();
+        }
 
-        // select2 data consultation
-        $consultation = Consultation::orderBy('name', 'asc')->get();
-
-        return view('pages.backsite.operational.appointment.index', compact('appointment', 'doctor', 'consultation'));
+        return view('pages.backsite.operational.appointment.index', compact('appointment'));
     }
 
     /**
