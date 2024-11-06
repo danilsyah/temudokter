@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backsite;
 use App\Http\Controllers\Controller;
 
 //use library
-use Illuminate\Support\Facades\storage;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
